@@ -1,0 +1,19 @@
+--- /usr/local/lib/python3.6/dist-packages/torch/nn/modules/pooling.py
++++ /usr/local/lib/python3.6/dist-packages/torch/nn/modules/pooling.py
+@@ -20,14 +20,12 @@
+         >>> input = torch.randn(1, 64, 10, 9)
+         >>> output = m(input)
+         >>> # target output size of 10x7
+-        >>> m = nn.AdaptiveAvgPool2d((None, 7))
++        >>> m = nn.AdaptiveMaxPool2d((None, 7))
+         >>> input = torch.randn(1, 64, 10, 9)
+         >>> output = m(input)
+ 
+     """
+ 
+-    output_size: _size_2_opt_t
+-
+-    def forward(self, input: Tensor) -> Tensor:
++    def forward(self, input):
+         return F.adaptive_avg_pool2d(input, self.output_size)
+ 
